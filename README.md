@@ -20,6 +20,9 @@ API para char de mensagens com o cliente
     .yarn add typeorm reflect-metadata sqlite3 => add o typeorm(relaciona um objeto a um campo do bd) e sqlite3
     .yarn add uuid  => add biblioteca do uuid(id randomico universal)
     .yarn add @types/uuid -D => add tipagem uuid
+    yarn typeorm migration:create -n CreateSettings
+    yarn typeorm migration:create -n CreateUsers
+    yarn typeorm migration:create -n CreateMessages
     
 
 =========================== COMENTÁRIOS ===========================
