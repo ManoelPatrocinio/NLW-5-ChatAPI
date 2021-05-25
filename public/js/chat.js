@@ -30,12 +30,15 @@ document.querySelector("#start_chat").addEventListener("click", (event) => {
     });
   });
 
+  //ouve e executa o evento  de listagem
   socket.on("client_list_all_messages", (messages) => {
     var template_client = document.getElementById("message-user-template")
       .innerHTML;
     var template_admin = document.getElementById("admin-template").innerHTML;
 
     messages.forEach((message) => {
+
+      //separa as mensagens dos cliente
       if (message.admin_id === null) {
         const rendered = Mustache.render(template_client, {
           message: message.text,
@@ -43,7 +46,7 @@ document.querySelector("#start_chat").addEventListener("click", (event) => {
         });
 
         document.getElementById("messages").innerHTML += rendered;
-      } else {
+      } else {//separa as mensagens dos atendente
         const rendered = Mustache.render(template_admin, {
           message_admin: message.text,
         });
@@ -54,7 +57,7 @@ document.querySelector("#start_chat").addEventListener("click", (event) => {
   });
 
   socket.on("admin_send_to_client", (message) => {
-    socket_admin_id = message.socket_id;
+    socket_admin_id = message.socket_id; //armazena a conexão do admin, para poder se comunicar 
 
     const template_admin = document.getElementById("admin-template").innerHTML;
 
@@ -62,7 +65,7 @@ document.querySelector("#start_chat").addEventListener("click", (event) => {
       message_admin: message.text,
     });
 
-    document.getElementById("messages").innerHTML += rendered;
+    document.getElementById("messages").innerHTML += rendered; //adiciona ao chat do cliente a messagem recebidada do admin
   });
 });
 

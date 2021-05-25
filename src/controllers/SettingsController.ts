@@ -21,10 +21,10 @@ class SettingsController {
     }
 
     async findByUserName(req: Request, res:Response){
-        const {chat, username} = req.params;
+        const {username} = req.params;
         const settingsService = new SettingsServices();
 
-        const settings = settingsService.findByUserName(username)
+        const settings = await settingsService.findByUserName(username)
 
         return res.json(settings)
     }
@@ -32,9 +32,8 @@ class SettingsController {
     async update(req: Request, res:Response){
         const { username} = req.params;
         const {chat} = req.body;
-
         const settingsService = new SettingsServices();
-        const settings = settingsService.update(username,chat)
+        const settings = await settingsService.update(username,chat)
 
         return res.json(settings)
     }

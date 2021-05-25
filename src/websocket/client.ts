@@ -1,3 +1,4 @@
+import { Socket } from "socket.io";
 import { Connection } from "../entities/connection";
 import{io} from "../http";
 import {ConnectionsService} from "../services/ConnectionsService"
@@ -54,5 +55,38 @@ io.on("connect",(socket)=>{
             text,
             user_id
         })
+        
+        //resgata todas as mensagens
+        const allMessages = await message.listByUser(user_id);
+
+        //emite um evento p/ listagem
+        socket.emit("client_list_all_messages",allMessages)
+
     })
+
+    socket.on("client_send_to_admin", async (params) => {
+        const { text, socket_admin_id } = params;
+
+        const socket_id = socket.id;
+
+        const { user_id } = await connectionsService.findBySocketID(socket_id);
+
+        const messages = await message.create({
+        text,
+        user_id,
+        });
+
+        io.to(socket_admin_id).emit("admin_receive_message", {
+        messages,
+        socket_id,
+        });
+
+        // Melhorias
+    });
+
+  socket.on("disconnect", async () => {
+    console.log(socket.id);
+    await connectionsService.deleteBySocketId(socket.id);
+  });
+
 })
