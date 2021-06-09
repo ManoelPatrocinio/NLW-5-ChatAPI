@@ -56,11 +56,17 @@
     <div class="chat chat_support" id="chat_help">
       <div class="in_support_header">
         <span>Iniciar um chat de suporte</span>
-        <div class="icon_close" onclick="closeChat();">
+        <div class="icon_close" onclick="closeChat();" id="close_chat">
           <img src="/images/close.png" />
         </div>
       </div>
       <div class="text_support text_help">
+
+        <div class="first_email">
+          <span>Seu e-mail</span>
+          <input type="email" name="email" onblur="validacaoEmail();" id="email" maxlength="45" size="45"/>
+        </div>
+
         <div class="text_help">
           <span>Como podemos te ajudar?</span>
           <textarea
@@ -76,10 +82,6 @@
           >
         </div>
 
-        <div class="first_email">
-          <span>Seu e-mail</span>
-          <input type="text" name="" id="email" />
-        </div>
 
         <div class="button">
           <button class="btn_cancel">Cancelar</button>
@@ -105,6 +107,7 @@
           const buttonSupport = document.getElementById("btn_support");
           if (!response.chat) {
             buttonSupport.style.display = "none";
+            
           }
         })
       );
@@ -112,10 +115,33 @@
 
     function openChat() {
       chat.style.display = "block";
+      
     }
 
     function closeChat() {
       chat.style.display = "none";
+    }
+
+    function validacaoEmail() {
+      field = document.getElementById("email")
+      usuario = document.getElementById("email").value.substring(0, field.value.indexOf("@"));
+      dominio = document.getElementById("email").value.substring(field.value.indexOf("@")+ 1, field.value.length);
+
+      if ((usuario.length >=1) &&
+        (dominio.length >=3) &&
+        (usuario.search("@")==-1) &&
+        (dominio.search("@")==-1) &&
+        (usuario.search(" ")==-1) &&
+        (dominio.search(" ")==-1) &&
+        (dominio.search(".")!=-1) &&
+        (dominio.indexOf(".") >=1)&&
+        (dominio.lastIndexOf(".") < dominio.length - 1)) {
+        document.getElementById("msgemail").innerHTML="E-mail válido";
+        alert("E-mail valido");
+      } else{
+        // document.getElementById("email").innerHTML="<font color='red'>E-mail inválido </font>";
+        alert("E-mail invalido");
+      }
     }
 
     function keyUpTextHelp(event) {

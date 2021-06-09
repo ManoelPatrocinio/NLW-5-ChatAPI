@@ -3,7 +3,7 @@ root,
 html {
   padding: 5px;
   box-sizing: border-box;
-}
+} 
 
 body {
   background: #ffffff;
@@ -101,21 +101,21 @@ body {
 
 .client .name {
   text-align: end;
+  font-weight: 600;
 }
 
 .client_message {
   background: #f2ecfa;
-  padding: 20px 10px;
+  padding: 2px 10px;
   margin: 10px 0;
   width: 250px;
   margin-left: 30px;
-  border-radius: 4px;
+  border-radius: 6px;
   line-height: 20px;
 }
 
 .client .message {
-  background: #f2ecfa;
-  /* background: #cecad4; */
+  background: #d9d9d9;
   padding: 20px 10px;
   margin: 10px 0;
   width: 250px;
@@ -125,7 +125,7 @@ body {
 }
 
 .text_support {
-  border: 1px solid #cec9c9;
+ 
   max-height: 500px;
   overflow-y: scroll;
   /* border-bottom: 0px; */
@@ -136,12 +136,19 @@ body {
   flex-direction: column;
 }
 
+.admin_name{
+  font-weight: bold;
+  color: #8257e6;
+}
 .admin .message {
   width: 230px;
-  background: #f2ecfa;
+  background: #8257e6;
   border-radius: 4px;
   padding: 10px;
-  margin-left: 12px;
+  margin-left: 2px;
+  color: #fff;
+  font-weight: 550;
+  font-family: system-ui;
 }
 
 .message_send {
@@ -171,6 +178,7 @@ body {
 
 .text_help {
   padding-top: 8px;
+  margin-bottom: 14px;
 }
 
 .text_help textarea {
@@ -190,7 +198,7 @@ body {
 .first_email {
   display: flex;
   flex-direction: column;
-  margin-top: 34px;
+  margin-top: 4px;
 }
 
 .first_email input {
@@ -206,9 +214,9 @@ input[type="text"]:focus {
 }
 
 .btn_start_chat {
-  width: 121px;
+  width: 122px;
   height: 40px;
-
+  font-weight: 600;
   background: #8257e6;
   border-radius: 4px;
   color: #fff;
@@ -221,15 +229,20 @@ input[type="text"]:focus {
 }
 
 .btn_cancel {
+  width: 122px;
+  height: 40px;
+  border-radius: 4px;
   border: 0;
   cursor: pointer;
   margin-right: 10px;
+  font-weight: 600;
 }
 
 .button {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 10px;
 }
@@ -264,7 +277,7 @@ input[type="text"]:focus {
 }
 
 .admin {
-  border: 1px solid #ededed;
+  
   margin-top: 5px;
 }
 

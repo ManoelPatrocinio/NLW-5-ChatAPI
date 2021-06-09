@@ -11,7 +11,7 @@ class SettingsController {
         try {
             const settings =  await settingsService.create({chat,username})
         
-            return res.json(settings);
+            return res.json(settings);   
 
         } catch (e) {
             return res.status(400).json({

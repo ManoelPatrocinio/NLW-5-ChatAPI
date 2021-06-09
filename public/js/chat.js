@@ -5,6 +5,10 @@ let socket = null;
 document.querySelector("#start_chat").addEventListener("click", (event) => {
   socket = io();
 
+
+  const buttonSupport = document.getElementById("btn_support");
+  buttonSupport.style.display ="none" //desativa a visualização do button suporte
+
   const chat_help = document.getElementById("chat_help");
   chat_help.style.display = "none";
 
@@ -91,3 +95,8 @@ document
 
     document.getElementById("messages").innerHTML += rendered;
   });
+
+  document.querySelector("#close_chat").addEventListener("click", (event) => {
+    const chat = document.getElementById("chat_help");
+    chat.style.display="none"
+  })
