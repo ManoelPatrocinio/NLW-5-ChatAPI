@@ -28,30 +28,28 @@ class ConnectionsService{
         return connection
     }
 
-
-    async findByUserId(user_id:string){
-        const connection = await this.connectionRepository.findOne({
-            user_id,
-        })
-        return connection 
-    }
-
     //buscar os usuarios não atendidos
     async findAllWithoutAdmin(){
         const connetioin = await this.connectionRepository.find({
             where: { admin_id:null},
             relations: ["user"],
         })
-
+        
         return connetioin
     }
-
+    
+    async findByUserId(user_id:string){
+        const connection = await this.connectionRepository.findOne({
+            user_id,
+        })
+        return connection 
+    }
     //busca uma conexão pelo id
     async findBySocketID(socket_id: string) {
         const connection = await this.connectionRepository.findOne({
-          socket_id,
+            socket_id,
         });
-    
+        
         return connection;
     }
     

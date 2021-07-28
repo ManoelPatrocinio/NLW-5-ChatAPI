@@ -1,6 +1,5 @@
 const socket = io();
 let connectionsUsers = [];
-let connectionInSupport = []; //Cria uma variavel para armazenar os atendimentos
 
 socket.on("admin_list_all_users", (connections) => {
   connectionsUsers = connections;
@@ -8,23 +7,20 @@ socket.on("admin_list_all_users", (connections) => {
 
   let template = document.getElementById("template").innerHTML;
 
-  connections.forEach(connection => {
+  connections.forEach((connection) => {
     const rendered = Mustache.render(template, {
       email: connection.user.email,
       id: connection.socket_id,
     });
-
     document.getElementById("list_users").innerHTML += rendered;
   });
+  
 });
 
-//abre o chat para responser o cliente 
 function call(id) {
   const connection = connectionsUsers.find(
     (connection) => connection.socket_id === id
   );
-
-  connectionInSupport.push(connection); //Quando encontrar a conexao, coloca dentro do array de atendimentos
 
   const template = document.getElementById("admin_template").innerHTML;
 
@@ -39,9 +35,9 @@ function call(id) {
     user_id: connection.user_id,
   };
 
-  socket.emit("admin_user_in_support", params); 
+  socket.emit("admin_user_in_support", params);
 
-  socket.emit("admin_list_messages_by_user", params, (messages) => { //emite evento de listagem das mensagem do user p/ o admin
+  socket.emit("admin_list_messages_by_user", params, (messages) => {
     const divMessages = document.getElementById(
       `allMessages${connection.user_id}`
     );
@@ -72,14 +68,13 @@ function call(id) {
 }
 
 function sendMessage(id) {
-  const text = document.getElementById(`send_message_${id}`); //pega o texto a ser enviado pelo admin
+  const text = document.getElementById(`send_message_${id}`);
 
   const params = {
     text: text.value,
     user_id: id,
   };
 
-  
   socket.emit("admin_send_message", params);
 
   const divMessages = document.getElementById(`allMessages${id}`);
@@ -97,9 +92,10 @@ function sendMessage(id) {
 }
 
 socket.on("admin_receive_message", (data) => {
-  const connection = connectionInSupport.find(
+  console.log(data);
+  const connection = connectionsUsers.find(
     (connection) => connection.socket_id === data.socket_id
-  ); //Aqui utiliza o array de atendimento que foi inserido acima
+  );
 
   const divMessages = document.getElementById(
     `allMessages${connection.user_id}`

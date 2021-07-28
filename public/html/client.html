@@ -61,10 +61,16 @@
         </div>
       </div>
       <div class="text_support text_help">
-
         <div class="first_email">
           <span>Seu e-mail</span>
-          <input type="email" name="email" onblur="validacaoEmail();" id="email" maxlength="45" size="45"/>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            maxlength="45"
+            size="45"
+          />
+           <span id="invalidEmail">Digite um e-mail Válido</span>
         </div>
 
         <div class="text_help">
@@ -82,7 +88,6 @@
           >
         </div>
 
-
         <div class="button">
           <button class="btn_cancel">Cancelar</button>
           <button class="btn_start_chat" id="start_chat">Iniciar chat</button>
@@ -99,15 +104,16 @@
 
   <script>
     onLoad();
+
     const chat = document.getElementById("chat_help");
+    const supportButton = document.getElementById("btn_support");
 
     function onLoad() {
-      fetch("http://localhost:3333/settings/admin").then((result) =>
+      fetch("http://localhost:3000/settings/admin").then((result) =>
         result.json().then((response) => {
           const buttonSupport = document.getElementById("btn_support");
           if (!response.chat) {
             buttonSupport.style.display = "none";
-            
           }
         })
       );
@@ -115,33 +121,11 @@
 
     function openChat() {
       chat.style.display = "block";
-      
+      supportButton.style.display = "none";
     }
 
     function closeChat() {
       chat.style.display = "none";
-    }
-
-    function validacaoEmail() {
-      field = document.getElementById("email")
-      usuario = document.getElementById("email").value.substring(0, field.value.indexOf("@"));
-      dominio = document.getElementById("email").value.substring(field.value.indexOf("@")+ 1, field.value.length);
-
-      if ((usuario.length >=1) &&
-        (dominio.length >=3) &&
-        (usuario.search("@")==-1) &&
-        (dominio.search("@")==-1) &&
-        (usuario.search(" ")==-1) &&
-        (dominio.search(" ")==-1) &&
-        (dominio.search(".")!=-1) &&
-        (dominio.indexOf(".") >=1)&&
-        (dominio.lastIndexOf(".") < dominio.length - 1)) {
-        document.getElementById("msgemail").innerHTML="E-mail válido";
-        alert("E-mail valido");
-      } else{
-        // document.getElementById("email").innerHTML="<font color='red'>E-mail inválido </font>";
-        alert("E-mail invalido");
-      }
     }
 
     function keyUpTextHelp(event) {

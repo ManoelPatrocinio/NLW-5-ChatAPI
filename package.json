@@ -16,6 +16,7 @@
     "socket.io": "^4.1.2",
     "socket.io-client": "^4.1.2",
     "sqlite3": "^5.0.2",
+    "sweetalert2": "^11.0.18",
     "typeorm": "^0.2.32",
     "uuid": "^8.3.2"
   },
