@@ -2,7 +2,7 @@
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/ManoelPatrocinio/NLW-5-ChatAPI/blob/main/LICENSE) 
 # Sobre o projeto
 
-O projeto foi desenvolvido durante a NLW#5, evento organizado pela rocketseat, se trata de uma chat de mensagens, para que o atentende possa oferecer suporte os cliente.
+O projeto foi desenvolvido durante a NLW#5, evento organizado pela rocketseat, se trata de uma chat de mensagens, para que o atentende possa oferecer suporte ao cliente.
 
 ## TECNOLOGIAS USADAS  
       *TypeScript
@@ -42,10 +42,7 @@ $ cd NLW-5-ChatAPI
 # Instale as dependências iniciais
 $ npm install
 $ npm install --global yarn
-$ yarn init -Y                             
-$ yarn add express                         
-$ yarn add @types/express -D                                  
-$ yarn add nodemon -D 
+
 
 # As demais dependencias e tecnologias usadas estão do arquivo "anotações"
 
